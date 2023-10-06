@@ -589,7 +589,13 @@ for i in range(0, len(students)):
 
 
 # Initialize all students and programs as unmatched.
-unmatched_students = set(student['id'] for student in students)
+
+# Shuffle the students so that they don't propose in the same order every time.
+# This also ensures that the algorithm is stable.
+students_shuffled = students
+random.shuffle(students_shuffled)
+
+unmatched_students = set(student['id'] for student in students_shuffled)
 program_capacity = {program['id']: program['capacity']
                     for program in residency_programs_final}
 program_match = {program['id']: [] for program in residency_programs_final}
@@ -597,7 +603,8 @@ program_match = {program['id']: [] for program in residency_programs_final}
 # Now we iterate over unmatched students to make proposals.
 while unmatched_students:
     for student_id in list(unmatched_students):
-        # Choose the highest-ranked program that the student has not yet proposed to.
+        # On the assumption of sorted rankings, choose the highest-ranked program
+        # that the student has not yet proposed to.
         preferred_program_id = next(
             (ranking['program_id'] for ranking in rankings if ranking['student_id'] == student_id), None)
 
@@ -607,7 +614,7 @@ while unmatched_students:
             unmatched_students.remove(student_id)
             continue
 
-        # Remove this option from rankings so the student won't pick it again.
+        # Remove the current student from the rankings so that they can't propose to the same program again. 
         rankings = [r for r in rankings if not (
             r['student_id'] == student_id and r['program_id'] == preferred_program_id)]
 
