@@ -16,6 +16,7 @@ This project implements the Gale-Shapley algorithm to solve the Stable Marriage 
 * Python 3.x
 * MySQL
 * Python libraries: mysql-connector-python
+* Faker Library (if you're adding fake data)
 
 ## Installation
 
