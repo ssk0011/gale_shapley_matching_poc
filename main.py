@@ -13,8 +13,8 @@ def mysql_connect():
     # Connect to MySQL.
     mydb = mysql.connector.connect(
         host="localhost",
-        user="root",
-        # password="password"
+        user="username",
+        password="password"
     )
 
     # Create a "cursor" to run SQL commands
@@ -93,7 +93,7 @@ def create_mysql_matches_table(my_cursor):
     """
     Create a new matches table if it doesn't already exist.
     """
-    
+
     my_cursor.execute(
         """
                         CREATE TABLE Matches (
@@ -106,7 +106,10 @@ def create_mysql_matches_table(my_cursor):
     )
 
 def insert_mysql_students_data(my_cursor, students):
-    # Insert data for students table.
+    """
+    Insert data for students table.
+    """
+    
     for student in students:
         sql = "INSERT INTO Students (first_name, last_name, email, gpa, specialty) VALUES (%s, %s, %s, %s, %s)"
         val = (student['first_name'], student['last_name'],
@@ -115,7 +118,10 @@ def insert_mysql_students_data(my_cursor, students):
         mydb.commit()
 
 def insert_mysql_residency_programs_data(my_cursor, residency_programs):
-    # Insert data for residency_programs table.
+    """
+    Insert data for residency_programs table.
+    """
+
     for program in residency_programs:
         sql = "INSERT INTO Residency_Programs (program_name, location, specialty) VALUES (%s, %s, %s)"
         val = (program['program_name'], program['location'], program['specialty'])
@@ -123,7 +129,10 @@ def insert_mysql_residency_programs_data(my_cursor, residency_programs):
         mydb.commit()
 
 def insert_mysql_rankings_data(my_cursor, rankings):
-    # Insert data for rankings table.
+    """
+    Insert data for rankings table.
+    """
+
     for ranking in rankings:
         sql = "INSERT INTO Rankings (student_id, program_id, ranking) VALUES (%s, %s, %s)"
         val = (ranking['student_id'], ranking['program_id'], ranking['ranking'])
@@ -131,7 +140,10 @@ def insert_mysql_rankings_data(my_cursor, rankings):
         mydb.commit()
 
 def insert_mysql_matches_data(my_cursor, program_match):
-    # Insert data for matches table.
+    """
+    Insert data for matches table.
+    """
+
     for program in program_match:
         for student in program_match[program]:
             sql = "INSERT INTO Matches (student_id, program_id) VALUES (%s, %s)"
@@ -140,6 +152,10 @@ def insert_mysql_matches_data(my_cursor, program_match):
             mydb.commit()
 
 def gale_shapley_matching_algorithm(unmatched_students, program_capacity, program_match, rankings):
+    """
+    Run the Gale-Shapley matching algorithm to match students to residency programs.
+    """
+
     for student_id in list(unmatched_students):
         # On the assumption of sorted rankings, choose the highest-ranked program
         # that the student has not yet proposed to.
