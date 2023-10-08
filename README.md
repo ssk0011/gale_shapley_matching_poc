@@ -71,4 +71,4 @@ This project implements the Gale-Shapley algorithm to solve the Stable Marriage 
 
 After running the program, you can query the MySQL database to see the final stable matches. Example:
 
-`SELECT * FROM final_matches;`
+`SELECT * FROM matches;`
