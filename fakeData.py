@@ -472,12 +472,21 @@ class fakeData:
 
 
     def get_medical_specialties(self):
+        """
+        Returns the list of medical specialties.
+        """
         return self.medical_specialties
 
     def get_residency_programs(self):
+        """
+        Returns the list of residency programs.
+        """
         return self.residency_programs_base
     
     def generate_student_data(self):
+        """
+        Generates fake student data.
+        """
         # Students Table: Generate 1000 fake students.
         for i in range(0, 1000):
 
@@ -496,6 +505,9 @@ class fakeData:
 
 
     def generate_residency_data(self):
+        """
+        Generates fake residency data.
+        """
         residency_programs_base = self.residency_programs_base
         # Residency Programs Table: Generate residency programs based on the dictionary above.
         for i in range(0, len(residency_programs_base)):
@@ -513,12 +525,18 @@ class fakeData:
         return self.residency_programs
 
     def generate_residency_ids(self):
+        """
+        Generates a list of residency IDs.
+        """
         # Residency IDs: Create a list of residency IDs to choose from.
         self.residency_ids = [residency['id'] for residency in self.residency_programs]
         return self.residency_ids
 
 
     def generate_rankings_data(self):
+        """
+        Generates fake rankings data.
+        """
         # Rankings Table: Generate random rankings for each student.
         for i in range(0, len(self.students)):
 
