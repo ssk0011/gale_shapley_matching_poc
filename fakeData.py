@@ -548,7 +548,6 @@ class fakeData:
                     'id': i,
                     'student_id': self.students[i]['id'],
                     'program_id': random.choice(self.residency_ids),
-                    # 'rank': random.randint(1,10)
                     'ranking': j
                 }
 

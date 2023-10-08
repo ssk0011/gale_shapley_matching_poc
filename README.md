@@ -40,8 +40,11 @@ This project implements the Gale-Shapley algorithm to solve the Stable Marriage 
 ### Students Table
 
 * student_id
-* student_name
-* specialty_interest
+* first_name
+* last_name
+* email
+* gpa
+* specialty
 
 ### Residency_Programs Table
 
@@ -49,13 +52,20 @@ This project implements the Gale-Shapley algorithm to solve the Stable Marriage 
 * program_name
 * location
 * specialty
+* capacity
 
 ### Rankings Table
 
 * rank_id
 * student_id
 * program_id
-* rank
+* ranking
+
+### Matches Table
+
+* match_id
+* student_id
+* program_id
 
 ## Usage Example
 
