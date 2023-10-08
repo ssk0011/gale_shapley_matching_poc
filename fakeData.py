@@ -3,6 +3,9 @@ from faker import Faker
 
 class fakeData:
     def __init__(self):
+        """
+        Initialize the fakeData class.
+        """
         # List of medical specialties to choose from.
         self.medical_specialties = [
             "Anesthesiology",
