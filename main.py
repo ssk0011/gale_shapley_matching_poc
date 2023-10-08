@@ -181,12 +181,14 @@ def gale_shapley_matching_algorithm(unmatched_students, program_capacity, progra
             least_preferred_student = min(program_match[preferred_program_id], key=lambda x: next(
                 (r['ranking'] for r in rankings if r['student_id'] == x and r['program_id'] == preferred_program_id), float('inf')))
             
+            # Get the rankings of the new student and the least preferred student.
             new_student_rank = next((r['ranking'] for r in rankings if r['student_id'] ==
                                     student_id and r['program_id'] == preferred_program_id), float('inf'))
             
             least_preferred_student_rank = next((r['ranking'] for r in rankings if r['student_id'] ==
                                                 least_preferred_student and r['program_id'] == preferred_program_id), float('inf'))
 
+            # If the new student is preferred, replace the least preferred student with the new student.
             if new_student_rank < least_preferred_student_rank:
                 # Replace the least preferred student with the new student.
                 program_match[preferred_program_id].remove(
